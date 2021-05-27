@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tracking system</title>
+
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Tracking system</title>
+    </head>
+
+<body>
+
+<div th:replace="fragments/fragments::header"></div>
+
+
+<div class="container">
+    <h2  style="padding-left: 20px">Add material</h2>
+    <div th:if="${noSupplier}" style="color: red; padding-left: 20px" >
+      Supplier with this name doesn't exist.
+    </div>
+
+    <form method="POST"  th:object="${materialBindingModel}" th:action="@{/material-add}">
+        <div  style="padding: 20px">
+        <div class="row">
+            <div  style="padding: 5px">
+                <label >Material</label>
+                <input th:field="*{name}"placeholder="Material"/>
+                <br>
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+            </div>
+            <div  style="padding: 5px">
+                <label >Mole</label>
+                <input th:field="*{mole}" placeholder="Mole"/>
+                <br>
+                <small th:if="${#fields.hasErrors('mole')}" th:errors="*{mole}"  style="color: red; padding-left: 20px">This field can not be blank</small>
+            </div>
+            <div  style="padding: 5px">
+                <label >Supplier</label>
+
+                    <input th:field="*{supplier}" placeholder="Supplier"/>
+                    <small th:if="${#fields.hasErrors('supplier')}" th:errors="*{supplier}"  style="color: red; padding-left: 20px">This field can not be blank</small>
+
+            </div>
+        </div>
+        </div>
+        <div  style="padding: 20px"class="row">
+            <div >
+                <div >
+                    <input type="submit" value="Add material"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

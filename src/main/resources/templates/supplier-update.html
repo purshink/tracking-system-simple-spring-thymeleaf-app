@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tracking system</title>
+</head>
+
+<body>
+
+<div th:replace="fragments/fragments::header"></div>
+
+
+<div class="container">
+    <h2 style="padding-left: 20px">Update supplier</h2>
+
+    <form th:method="POST" th:object="${supplierUpdateBindingModel}" th:action="@{/supplier-update/{id}(id=*{id})}">
+        <div style="padding: 20px">
+            <div class="row">
+                <div style="padding: 5px">
+                    <label>Supplier name</label>
+                        <input  th:field="*{supplierName}" placeholder="Supplier name"/>
+                    <div th:marginheight="10px" th:if="${supplierNameExists}" style="color: red" >
+                        Supplier with this name already exists.
+                    </div>
+                    <small th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                </div>
+                <div class="row">
+                    <div style="padding: 5px">
+                        <label>CIty</label>
+                        <select th:field="*{city}">
+                            <option value="">- Select city-</option>
+                            <optgroup label="City">
+                                <option th:each="c : ${T(com.example.tracking_system.model.entity.CityNameEnum).values()}"
+                                        th:text="${c.name}"
+                                        th:value="${c.name}"
+                                        value="city">Zurich</option>
+                            </optgroup>
+                        </select>
+                        <small th:if="${#fields.hasErrors('city')}" th:errors="*{city}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div style="padding: 5px">
+                        <label>Дървжава</label>
+                        <select th:field="*{country}">
+                            <option value="">- Select country-</option>
+                            <optgroup label="Country">
+                                <option th:each="c : ${T(com.example.tracking_system.model.entity.CountryNameEnum).values()}"
+                                        th:text="${c.name}"
+                                        th:value="${c.name}"
+                                        value="country">UK</option>
+                            </optgroup>
+                        </select>
+                        <small th:if="${#fields.hasErrors('country')}" th:errors="*{country}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div style="padding: 5px">
+                        <label>Адрес</label>
+                        <input  th:field="*{address}"placeholder="Адрес"/>
+                        <small th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>Contact person</label>
+                        <input  th:field="*{contactPerson}" placeholder="Contact person"/>
+                        <small th:if="${#fields.hasErrors('contactPerson')}" th:errors="*{contactPerson}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label >Phone number</label>
+                        <input  th:field="*{phoneNumber}" placeholder="Phone number"/>
+                        <small th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label >UID</label>
+                        <input th:field="*{uid}" placeholder="UID"/>
+                        <div th:marginheight="10px" th:if="${uidExists}" style="color: red" >
+                            Supplier with this UID already exists.
+                        </div>
+                        <small th:if="${#fields.hasErrors('uid')}" th:errors="*{uid}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>VAT</label>
+                        <input th:field="*{vat}" placeholder="VAT"/>
+                        <div th:marginheight="10px" th:if="${vatExists}" style="color: red" >
+                           Supplier with this VAT already exists.
+                        </div>
+                        <small th:if="${#fields.hasErrors('vat')}" th:errors="*{vat}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>Code</label>
+                        <input  th:field="*{code}" placeholder="Code"/>
+
+                        <div th:marginheight="10px" th:if="${codeExists}" style="color: red" >
+                           Supplier with this code already exists.
+                        </div>
+                        <small th:if="${#fields.hasErrors('code')}" th:errors="*{code}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>Bank name</label>
+                        <input  th:field="*{bankName}" placeholder="Bank name"/>
+                        <small th:if="${#fields.hasErrors('bankName')}" th:errors="*{bankName}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>IBAN</label>
+                        <input  th:field="*{iban}" placeholder="IBAN"/>
+                        <div th:marginheight="10px" th:if="${ibanExists}"style="color: red">
+                            Supplier with this IBAN already exists.
+                        </div>
+                        <small th:if="${#fields.hasErrors('iban')}" th:errors="*{iban}" style="color: red; padding-left: 20px" >This field can not be blank</small>
+                    </div>
+                    <div  style="padding: 5px">
+                        <label>BIC</label>
+                        <input  th:field="*{bic}" placeholder="BIC"/>
+                        <small th:if="${#fields.hasErrors('bic')}" th:errors="*{bic}" style="color: red; padding-left: 20px" >This field can not be blank</small>                    </div>
+
+            <div style="padding: 20px" class="row">
+                <div>
+                    <div>
+                        <input type="submit" value="Update supplier"/>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

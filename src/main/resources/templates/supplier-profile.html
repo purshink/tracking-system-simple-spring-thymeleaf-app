@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tracking system</title>
+</head>
+
+<body>
+
+<div th:replace="fragments/fragments::header"></div>
+
+
+<div class="container">
+    <h2 style="padding: 20px">Profile supplier</h2>
+        <div  th:object="${supplier}" style="padding-left: 20px">
+            <div class="row">
+                    <p th:text="|Supplier name: *{supplierName}|" ></p>
+
+                <div class="row">
+                        <p th:text="|City: *{city}|"></p>
+
+                        <p th:text="|Country: *{country}|"></p>
+                </div>
+
+                <div class="row">
+                        <p th:text="|Address: *{address}|"></p>
+                        <p th:text="|Contact person: *{contactPerson}|"></p>
+                        <p th:text="|Phone number: *{phoneNumber}|"></p>
+                        <p th:text="|UID: *{uid}|"></p>
+                        <p th:text="|VAT: *{vat} |"></p>
+                        <p th:text="|CODE: *{code} |"></p>
+                        <p th:text="|Bank name: *{bankName}|"></p>
+                        <p th:text="|IBAN: *{iban}|"></p>
+                        <p th:text="|BIC: *{bic} |"></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="padding: 20px" class="row">
+                <div>
+                    <div>
+                        <a th:href="@{/supplier-update/{id}(id = *{id})}" >Update profile</a>
+
+                    </div>
+                </div>
+            </div>
+    <div style="padding: 20px" class="row">
+        <div>
+            <div>
+
+                <a th:href="@{/delete-supplier/{id}(id = *{id})}">Delete profile</a>
+
+            </div>
+        </div>
+    </div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>
